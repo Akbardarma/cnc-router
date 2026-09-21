@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Autodesk Inventor CNC Router 3D Showcase | Kelompok DESKTOP CNC ROUTER • Akbar Darma Saputra, S.Tr.T.</title>
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#f0f9ff',
+              100: '#e0f2fe',
+              200: '#bae6fd',
+              400: '#38bdf8',
+              500: '#0ea5e9',
+              600: '#0284c7',
+              700: '#0369a1',
+              800: '#075985',
+              900: '#0c4a6e',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <!-- Custom Engineering Styles -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%230284c7'><path d='M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5'/></svg>">
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col selection:bg-brand-500 selection:text-white">
+
+  <!-- ================= TOP HEADER BAR ================= -->
+  <header class="border-b border-slate-200 bg-white/90 backdrop-blur-md sticky top-0 z-40 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-wrap items-center justify-between gap-4">
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center shadow-md shadow-blue-500/20">
+          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+          </svg>
+        </div>
+        <div>
+          <div class="flex items-center space-x-2">
+            <h1 class="text-base sm:text-lg font-bold text-slate-900 tracking-wide">DESKTOP CNC ROUTER 3-AXIS</h1>
+            <span class="px-2 py-0.5 text-xs font-semibold rounded-full bg-blue-50 text-blue-700 border border-blue-200">Kelompok DESKTOP CNC ROUTER</span>
+          </div>
+          <p class="text-xs text-slate-500">
+            Perancangan: <span class="text-blue-600 font-semibold">Kelompok DESKTOP CNC ROUTER (8 Anggota)</span> • Evaluator: <span class="text-slate-700 font-medium">Moh. Nasyir Tamara, S.ST., M.T. & Novian Fajar Satria, S.ST., M.T.</span> | Portofolio oleh: <span class="text-slate-800 font-semibold">Akbar Darma Saputra (Design & Drafting Engineer)</span>
+          </p>
+        </div>
+      </div>
+
+      <div class="flex items-center space-x-2 sm:space-x-3">
+        <a href="drawings/drawing.pdf" target="_blank" download="CNC_Router_Manufacturing_Drawings_PENS.pdf" class="inline-flex items-center px-3 py-1.5 rounded-md text-xs font-medium bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-300 hover:border-blue-400 transition-all shadow-sm">
+          <svg class="w-4 h-4 mr-1.5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+          </svg>
+          Blueprint 26 Lembar (PDF)
+        </a>
+        <a href="drawings/EXPLODE1.pdf" target="_blank" download="CNC_Router_Exploded_BOM.pdf" class="inline-flex items-center px-3 py-1.5 rounded-md text-xs font-semibold bg-blue-600 hover:bg-blue-700 text-white shadow-sm transition-all">
+          <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+          </svg>
+          Exploded BOM (PDF)
+        </a>
+      </div>
+    </div>
+
+    <!-- NAVIGATION TABS -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex space-x-1 sm:space-x-2 border-t border-slate-200 pt-1 pb-1 overflow-x-auto">
+      <button class="nav-tab-btn active" onclick="switchTab('tab-viewer')">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5"/></svg>
+        3D CAD Viewer & Explode
+      </button>
+      <button class="nav-tab-btn" onclick="switchTab('tab-bom')">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/></svg>
+        Bill of Materials (BOM 41 Part)
+      </button>
+      <button class="nav-tab-btn" onclick="switchTab('tab-drawings')">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/></svg>
+        Blueprint 26 Lembar (PENS)
+      </button>
+      <button class="nav-tab-btn" onclick="switchTab('tab-specs')">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+        Spesifikasi & Kolaborasi Tim
+      </button>
+    </div>
+  </header>
+
+  <!-- ================= TAB 1: 3D CAD VIEWER ================= -->
+  <main id="tab-viewer" class="tab-content flex-1 flex flex-col relative">
+    <div id="canvas-container" class="relative cad-cursor">
+      <!-- Loading Screen Overlay -->
+      <div id="model-loading-indicator" class="absolute inset-0 bg-white/95 backdrop-blur-sm flex flex-col items-center justify-center z-30 transition-opacity duration-300">
+        <div class="w-16 h-16 border-4 border-blue-100 border-t-blue-600 rounded-full animate-spin mb-4"></div>
+        <p id="loading-progress-text" class="text-sm font-semibold tracking-wider text-slate-800">Memuat Assembly Autodesk Inventor Asli...</p>
+        <div class="w-64 h-2 bg-slate-200 rounded-full mt-3 overflow-hidden border border-slate-300">
+          <div id="loading-progress-bar" class="h-full bg-blue-600 transition-all duration-200" style="width: 15%"></div>
+        </div>
+        <p class="text-xs text-slate-500 mt-2 font-mono">Assembly: C:\gptcodex\ebo\Last\Assembly CNC Router Desktop.iam</p>
+      </div>
+
+      <!-- Top Right Floating CAD Toolbar -->
+      <div class="absolute top-4 right-4 z-20 flex flex-col space-y-2">
+        <!-- Display Modes -->
+        <div class="glass-panel rounded-lg p-1.5 flex space-x-1 shadow-md">
+          <button id="mode-pbr" class="px-2.5 py-1 text-xs font-semibold rounded bg-blue-600 text-white shadow-sm" onclick="changeMode('pbr')">PBR Metal</button>
+          <button id="mode-wire" class="px-2.5 py-1 text-xs font-semibold rounded text-slate-600 hover:text-blue-600 hover:bg-slate-100" onclick="changeMode('wireframe')">Wireframe</button>
+          <button id="mode-xray" class="px-2.5 py-1 text-xs font-semibold rounded text-slate-600 hover:text-blue-600 hover:bg-slate-100" onclick="changeMode('xray')">X-Ray Ghost</button>
+        </div>
+
+        <!-- Camera Views -->
+        <div class="glass-panel rounded-lg p-2.5 shadow-md flex flex-col space-y-1.5">
+          <span class="text-[10px] font-bold tracking-wider text-slate-500 uppercase mb-0.5">Camera Angle</span>
+          <div class="grid grid-cols-2 gap-1.5 text-xs">
+            <button class="px-2 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-700 text-left font-medium border border-slate-200 transition-colors" onclick="viewer.setCameraPreset('isometric')">Isometric</button>
+            <button class="px-2 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-700 text-left font-medium border border-slate-200 transition-colors" onclick="viewer.setCameraPreset('front')">Front</button>
+            <button class="px-2 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-700 text-left font-medium border border-slate-200 transition-colors" onclick="viewer.setCameraPreset('top')">Top</button>
+            <button class="px-2 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-700 text-left font-medium border border-slate-200 transition-colors" onclick="viewer.setCameraPreset('side')">Side</button>
+          </div>
+          <button class="w-full px-2 py-1 rounded bg-slate-100 hover:bg-blue-50 hover:text-blue-700 hover:border-blue-300 text-slate-700 text-xs text-center border border-slate-200 mt-1 font-medium transition-colors" onclick="viewer.setCameraPreset('spindle')">
+            Spindle Focus
+          </button>
+        </div>
+
+        <!-- Extra Controls -->
+        <div class="glass-panel rounded-lg p-1.5 flex space-x-1 shadow-md justify-end">
+          <button id="btn-autorotate" class="p-1.5 rounded bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 shadow-sm" title="Auto Rotate" onclick="viewer.toggleAutoRotate()">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+          </button>
+          <button id="btn-reset" class="p-1.5 rounded bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 shadow-sm" title="Reset View" onclick="viewer.resetView()">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6"></path></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Bottom Center Floating Exploded View Toolbar -->
+      <div class="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 w-[92%] sm:w-[540px] glass-hud rounded-2xl p-4 tech-border-glow shadow-xl">
+        <div class="flex items-center justify-between mb-2">
+          <div class="flex items-center space-x-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-blue-600 animate-pulse-glow"></span>
+            <span class="text-xs font-bold uppercase tracking-wider text-slate-800">Exploded View Control</span>
+          </div>
+          <div class="flex items-center space-x-2">
+            <button id="btn-play-explode" class="flex items-center space-x-1 px-2.5 py-1 text-xs font-semibold rounded bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-300 shadow-sm transition-all" onclick="viewer.toggleExplodeAnimation()">
+              <svg class="w-3.5 h-3.5 text-blue-600" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+              <span>Animate</span>
+            </button>
+            <span id="explode-value-readout" class="text-xs font-mono font-bold text-blue-700 bg-blue-50 border border-blue-200 px-2.5 py-0.5 rounded shadow-inner">0%</span>
+          </div>
+        </div>
+
+        <div class="flex items-center space-x-3">
+          <span class="text-[11px] font-semibold text-slate-500 uppercase">Assembled</span>
+          <input id="explode-slider" type="range" min="0" max="100" value="0" class="cad-slider flex-1" oninput="viewer.setExplosionFactor(this.value / 100)">
+          <span class="text-[11px] font-semibold text-blue-600 uppercase">Exploded</span>
+        </div>
+        <p class="text-[11px] text-slate-500 text-center mt-2">
+          Geser slider untuk mengurai perakitan gantry, sumbu Z, spindle carriage, dan bantalan internal.
+        </p>
+      </div>
+
+      <!-- Bottom Left Part Inspector HUD Card -->
+      <div id="part-inspector-hud" class="hidden absolute bottom-6 left-6 z-20 w-80 glass-hud rounded-xl p-4 tech-border-glow border-blue-300 shadow-xl">
+        <div class="flex items-start justify-between">
+          <div>
+            <span id="hud-subsystem" class="text-[10px] font-bold text-blue-600 uppercase tracking-wider">Subsystem</span>
+            <h4 id="hud-part-name" class="text-sm font-bold text-slate-900 leading-snug mt-0.5">Component Name</h4>
+          </div>
+          <button class="text-slate-400 hover:text-slate-700 text-lg font-bold p-1 leading-none" onclick="viewer.deselectMesh()">&times;</button>
+        </div>
+        <div class="mt-2.5 space-y-1.5 text-xs">
+          <div class="flex justify-between border-b border-slate-200 pb-1">
+            <span class="text-slate-500">Material Finish:</span>
+            <span id="hud-material" class="text-slate-800 font-semibold">Aluminium 6061-T6</span>
+          </div>
+          <p id="hud-function" class="text-[11px] text-slate-600 leading-relaxed pt-1">
+            Komponen presisi Autodesk Inventor Kelompok DESKTOP CNC ROUTER.
+          </p>
+        </div>
+      </div>
+
+      <!-- Quick Info Bar (Bottom-Right) -->
+      <div class="absolute bottom-6 right-6 z-20 hidden md:flex items-center space-x-2 text-xs text-slate-600 bg-white/90 backdrop-blur px-3 py-1.5 rounded-lg border border-slate-200 shadow-md">
+        <span>Klik part untuk inspeksi</span>
+        <span class="text-slate-300">•</span>
+        <span>Drag mouse untuk putar 360°</span>
+        <span class="text-slate-300">•</span>
+        <span id="loaded-parts-count" class="text-blue-600 font-semibold">355 Meshes</span>
+      </div>
+    </div>
+  </main>
+
+  <!-- ================= TAB 2: BILL OF MATERIALS (BOM) ================= -->
+  <section id="tab-bom" class="tab-content hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
+    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
+      <div>
+        <h2 class="text-xl font-bold text-slate-900 flex items-center gap-2">
+          <span>Official Bill of Materials (BOM)</span>
+          <span class="text-xs px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-700 border border-blue-200 font-semibold">41 Komponen Resmi</span>
+        </h2>
+        <p class="text-xs sm:text-sm text-slate-600 mt-1">
+          Daftar komponen perakitan resmi Kelompok DESKTOP CNC ROUTER diekstrak dari <strong class="text-slate-800">EXPLODE1.pdf</strong> dan <strong class="text-slate-800">drawing.pdf Sheet 24</strong> (Mekatronika PENS).
+        </p>
+      </div>
+
+      <!-- Search Input -->
+      <div class="relative w-full md:w-80">
+        <input id="bom-search" type="text" placeholder="Cari part (contoh: SFU1605, Gantry, NEMA, SBR)..." class="w-full pl-9 pr-4 py-2 text-xs bg-white border border-slate-300 rounded-lg text-slate-800 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 shadow-sm" oninput="filterBOM()">
+        <svg class="w-4 h-4 absolute left-3 top-2.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+      </div>
+    </div>
+
+    <!-- Category Filter Pills -->
+    <div class="flex flex-wrap gap-2 mb-6">
+      <button class="filter-pill active" onclick="setBOMCategory('all', this)">Semua (41)</button>
+      <button class="filter-pill" onclick="setBOMCategory('structure', this)">Rangka & Struktur (13)</button>
+      <button class="filter-pill" onclick="setBOMCategory('motion', this)">Transmisi & Rel (13)</button>
+      <button class="filter-pill" onclick="setBOMCategory('actuator', this)">Aktuator & Motor (4)</button>
+      <button class="filter-pill" onclick="setBOMCategory('fastener', this)">Fastener & Baut (11)</button>
+    </div>
+
+    <!-- BOM Table -->
+    <div class="overflow-x-auto rounded-xl border border-slate-200 bg-white shadow-md">
+      <table class="w-full text-left text-xs text-slate-700">
+        <thead class="bg-slate-50 text-slate-600 uppercase text-[10px] tracking-wider border-b border-slate-200 font-semibold">
+          <tr>
+            <th class="py-3 px-4 text-center w-12">Balon #</th>
+            <th class="py-3 px-4">Nama Komponen / Part Number</th>
+            <th class="py-3 px-3">Kategori</th>
+            <th class="py-3 px-3 text-center">Qty</th>
+            <th class="py-3 px-4">Material & Standard</th>
+            <th class="py-3 px-4">Spesifikasi Teknik</th>
+            <th class="py-3 px-4">Fungsi / Posisi</th>
+            <th class="py-3 px-3 text-center">Sheet</th>
+            <th class="py-3 px-4 text-center">Aksi 3D</th>
+          </tr>
+        </thead>
+        <tbody id="bom-table-body" class="divide-y divide-slate-100">
+          <!-- Populated by JavaScript -->
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ================= TAB 3: 26-SHEET BLUEPRINTS ================= -->
+  <section id="tab-drawings" class="tab-content hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
+    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
+      <div>
+        <h2 class="text-xl font-bold text-slate-900 flex items-center gap-2">
+          <span>26 Lembar Gambar Kerja Manufaktur (Blueprints)</span>
+          <span class="text-xs px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-700 border border-blue-200 font-semibold">Standar PENS ISO</span>
+        </h2>
+        <p class="text-xs sm:text-sm text-slate-600 mt-1">
+          Set lengkap gambar teknik 2D resmi hasil kolaborasi Kelompok DESKTOP CNC ROUTER (Evaluator: Moh. Nasyir Tamara, S.ST., M.T. & Novian Fajar Satria, S.ST., M.T.), lengkap dengan etiket standar PENS ISO, toleransi, dimensi, dan SOP perakitan.
+        </p>
+      </div>
+
+      <div class="flex space-x-2">
+        <a href="drawings/drawing.pdf" target="_blank" download class="inline-flex items-center px-3.5 py-2 text-xs font-semibold rounded-lg bg-blue-600 hover:bg-blue-700 text-white shadow-sm transition-all">
+          <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+          Unduh Dokumen Asli (26 Halaman PDF)
+        </a>
+      </div>
+    </div>
+
+    <!-- Blueprint Category Filter -->
+    <div class="flex flex-wrap gap-2 mb-6">
+      <button class="filter-pill active" onclick="setDrawingCategory('all', this)">Semua Lembar (26)</button>
+      <button class="filter-pill" onclick="setDrawingCategory('frame', this)">Rangka & Struktur (5)</button>
+      <button class="filter-pill" onclick="setDrawingCategory('gantry', this)">Gantry & Motion (3)</button>
+      <button class="filter-pill" onclick="setDrawingCategory('zaxis', this)">Sumbu Z & Spindle (5)</button>
+      <button class="filter-pill" onclick="setDrawingCategory('transmission', this)">Transmisi Presisi (6)</button>
+      <button class="filter-pill" onclick="setDrawingCategory('motor', this)">Motor & Braket (1)</button>
+      <button class="filter-pill" onclick="setDrawingCategory('assembly', this)">Perakitan & SOP (6)</button>
+    </div>
+
+    <!-- Blueprints Grid -->
+    <div id="drawings-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Populated by JavaScript -->
+    </div>
+  </section>
+
+  <!-- ================= TAB 4: ENGINEERING SPECS & TEAM COLLABORATION ================= -->
+  <section id="tab-specs" class="tab-content hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
+    <!-- Team Collaboration & Overview Banner -->
+    <div class="glass-hud rounded-2xl p-6 mb-8 border border-blue-200 shadow-md">
+      <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+        <div>
+          <div class="flex items-center space-x-2">
+            <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-blue-50 text-blue-700 border border-blue-200">Proyek Rekayasa Kolaboratif</span>
+            <span class="text-xs text-slate-500">• Standar Manufaktur Mekatronika PENS (17-10-2022)</span>
+          </div>
+          <h2 class="text-xl sm:text-2xl font-bold text-slate-900 mt-1">Kelompok DESKTOP CNC ROUTER — D4 Teknik Mekatronika PENS</h2>
+          <p class="text-xs sm:text-sm text-slate-600 mt-1 max-w-3xl leading-relaxed">
+            Proyek perancangan mesin Desktop CNC Router 3-Axis secara kolaboratif oleh 8 mahasiswa Teknik Mekatronika PENS (Kelompok DESKTOP CNC ROUTER) di bawah bimbingan dan evaluasi dosen evaluator: <strong>Moh. Nasyir Tamara, S.ST., M.T.</strong> dan <strong>Novian Fajar Satria, S.ST., M.T.</strong> Seluruh anggota tim memiliki porsi tugas setara sebagai Design & Drafting Engineer dan berkolaborasi intensif mulai dari konseptualisasi dimensi, pemodelan 3D CAD & perakitan di Autodesk Inventor, kalkulasi sistem gerak linier, hingga penyusunan 26 lembar gambar kerja manufaktur berstandar ISO.
+          </p>
+          <div class="mt-3 flex flex-wrap items-center gap-2 text-xs">
+            <span class="text-slate-500 font-medium">Disajikan dalam Portofolio Web Interaktif oleh:</span>
+            <span class="px-2.5 py-0.5 rounded-md bg-blue-100 text-blue-800 font-semibold border border-blue-200">Akbar Darma Saputra, S.Tr.T. — Design & Drafting Engineer (Presenter)</span>
+          </div>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
+          <a href="drawings/drawing.pdf" target="_blank" download class="inline-flex items-center justify-center px-4 py-2.5 rounded-lg text-xs font-semibold bg-blue-600 hover:bg-blue-700 text-white shadow-sm transition-all whitespace-nowrap">
+            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+            Download 26 Lembar Blueprint (PDF)
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Team Members Grid & Equal Responsibility Framework -->
+    <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-sm mb-8">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4 pb-4 border-b border-slate-100">
+        <div>
+          <h3 class="text-base font-bold text-slate-900 flex items-center gap-2">
+            <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+            Susunan Anggota Kelompok DESKTOP CNC ROUTER & Model Kolaborasi
+          </h3>
+          <p class="text-xs text-slate-500 mt-1">
+            Model kolaborasi rekayasa: Seluruh 8 anggota memegang porsi tanggung jawab yang sama sebagai Design & Drafting Engineer dalam perancangan mekanik, modeling CAD, drafting ISO, dan SOP perakitan.
+          </p>
+        </div>
+        <div class="flex items-center space-x-2 text-xs">
+          <span class="px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 font-medium border border-slate-200">8 Mahasiswa</span>
+          <span class="px-2.5 py-1 rounded-md bg-blue-50 text-blue-700 font-semibold border border-blue-200">Evaluator: Moh. Nasyir Tamara, S.ST., M.T. & Novian Fajar Satria, S.ST., M.T.</span>
+        </div>
+      </div>
+
+      <!-- 8 Members Cards -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
+        <!-- 1. Akbar -->
+        <div class="p-3 bg-blue-50/70 border border-blue-200 rounded-lg relative overflow-hidden shadow-xs">
+          <span class="text-[10px] font-bold text-blue-600 uppercase tracking-wider block">DESKTOP CNC ROUTER</span>
+          <div class="text-xs font-bold text-slate-900 mt-0.5">Akbar Darma Saputra</div>
+          <span class="inline-block mt-1 text-[10px] font-semibold text-blue-700 bg-blue-100 px-1.5 py-0.5 rounded">Design & Drafting Engineer (Presenter)</span>
+        </div>
+        <!-- 2. Adi -->
+        <div class="p-3 bg-slate-50 border border-slate-200 rounded-lg hover:border-slate-300 transition-colors">
+          <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">DESKTOP CNC ROUTER</span>
+          <div class="text-xs font-bold text-slate-900 mt-0.5">Adi Prayoga</div>
+          <span class="inline-block mt-1 text-[10px] text-slate-500">Design & Drafting Engineer</span>
+        </div>
+        <!-- 3. Faqih -->
+        <div class="p-3 bg-slate-50 border border-slate-200 rounded-lg hover:border-slate-300 transition-colors">
+          <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">DESKTOP CNC ROUTER</span>
+          <div class="text-xs font-bold text-slate-900 mt-0.5">Faqih Abdillah Sidqi</div>
+          <span class="inline-block mt-1 text-[10px] text-slate-500">Design & Drafting Engineer</span>
+        </div>
+        <!-- 4. Azwar -->
+        <div class="p-3 bg-slate-50 border border-slate-200 rounded-lg hover:border-slate-300 transition-colors">
+          <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">DESKTOP CNC ROUTER</span>
+          <div class="text-xs font-bold text-slate-900 mt-0.5">Azwar Anas</div>
+          <span class="inline-block mt-1 text-[10px] text-slate-500">Design & Drafting Engineer</span>
+        </div>
+        <!-- 5. Syamsudin -->
+        <div class="p-3 bg-slate-50 border border-slate-200 rounded-lg hover:border-slate-300 transition-colors">
+          <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">DESKTOP CNC ROUTER</span>
+          <div class="text-xs font-bold text-slate-900 mt-0.5">M. Syamsudin Putra</div>
+          <span class="inline-block mt-1 text-[10px] text-slate-500">Design & Drafting Engineer</span>
+        </div>
+        <!-- 6. Heni -->
+        <div class="p-3 bg-slate-50 border border-slate-200 rounded-lg hover:border-slate-300 transition-colors">
+          <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">DESKTOP CNC ROUTER</span>
+          <div class="text-xs font-bold text-slate-900 mt-0.5">Heni Eka Saputri</div>
+          <span class="inline-block mt-1 text-[10px] text-slate-500">Design & Drafting Engineer</span>
+        </div>
+        <!-- 7. Wildan -->
+        <div class="p-3 bg-slate-50 border border-slate-200 rounded-lg hover:border-slate-300 transition-colors">
+          <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">DESKTOP CNC ROUTER</span>
+          <div class="text-xs font-bold text-slate-900 mt-0.5">Wildan Habibi</div>
+          <span class="inline-block mt-1 text-[10px] text-slate-500">Design & Drafting Engineer</span>
+        </div>
+        <!-- 8. Siti Alfathul -->
+        <div class="p-3 bg-slate-50 border border-slate-200 rounded-lg hover:border-slate-300 transition-colors">
+          <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">DESKTOP CNC ROUTER</span>
+          <div class="text-xs font-bold text-slate-900 mt-0.5">Siti Alfathul</div>
+          <span class="inline-block mt-1 text-[10px] text-slate-500">Design & Drafting Engineer</span>
+        </div>
+      </div>
+
+      <!-- Scope of Collective Work -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-3 border-t border-slate-100 text-xs">
+        <div class="p-3.5 rounded-lg bg-slate-50 border border-slate-200">
+          <div class="font-bold text-slate-900 flex items-center gap-1.5 mb-1.5">
+            <span class="w-2 h-2 rounded-full bg-blue-600"></span>
+            1. Perancangan & Pemodelan 3D CAD
+          </div>
+          <p class="text-slate-600 text-[11px] leading-relaxed">
+            Bersama-sama memodelkan 61 komponen unik (.ipt) di Autodesk Inventor, menentukan perakitan constraint sumbu X, Y, Z, dan mengintegrasikan 438 occurrences part standar.
+          </p>
+        </div>
+        <div class="p-3.5 rounded-lg bg-slate-50 border border-slate-200">
+          <div class="font-bold text-slate-900 flex items-center gap-1.5 mb-1.5">
+            <span class="w-2 h-2 rounded-full bg-blue-600"></span>
+            2. Standarisasi 26 Lembar Blueprint ISO
+          </div>
+          <p class="text-slate-600 text-[11px] leading-relaxed">
+            Menyusun gambar kerja 2D resmi, penentuan toleransi geometri (GD&T), proyeksi ortogonal, etiket standar PENS, dan detail dimensi pemesinan untuk tiap pelat.
+          </p>
+        </div>
+        <div class="p-3.5 rounded-lg bg-slate-50 border border-slate-200">
+          <div class="font-bold text-slate-900 flex items-center gap-1.5 mb-1.5">
+            <span class="w-2 h-2 rounded-full bg-blue-600"></span>
+            3. Analisis BOM & Urutan SOP Perakitan
+          </div>
+          <p class="text-slate-600 text-[11px] leading-relaxed">
+            Mengompilasi 41 item BOM (nomor balon EXPLODE1.pdf), memilih komponen komersial COTS (SFU1605, SBR12, BK/BF12), dan merumuskan SOP perakitan mekanik (Sheet 25-26).
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Technical Parameter Cards -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+      <div class="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
+        <span class="text-[10px] font-bold uppercase tracking-wider text-blue-600">Dimensi Rangka & Envelope</span>
+        <div class="text-lg sm:text-xl font-bold text-slate-900 mt-1">980 × 816 × 650 mm</div>
+        <p class="text-xs text-slate-500 mt-1">Berdasarkan profil 4080 (L=978mm & 816mm), travel efektif ~700×500×120mm.</p>
+      </div>
+
+      <div class="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
+        <span class="text-[10px] font-bold uppercase tracking-wider text-blue-600">Transmission & Precision</span>
+        <div class="text-xl font-bold text-slate-900 mt-1">SFU1605 (Kelas C7)</div>
+        <p class="text-xs text-slate-500 mt-1">Ball screw presisi diameter 16mm pitch 5mm dengan efisiensi mekanik 90% & anti-backlash.</p>
+      </div>
+
+      <div class="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
+        <span class="text-[10px] font-bold uppercase tracking-wider text-blue-600">Linear Guide System</span>
+        <div class="text-xl font-bold text-slate-900 mt-1">SBR12 + SBR12UU</div>
+        <p class="text-xs text-slate-500 mt-1">Rel silinder bertumpu mencegah lendutan (defleksi) dengan 8 unit bearing blocks sirkulasi bola.</p>
+      </div>
+
+      <div class="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
+        <span class="text-[10px] font-bold uppercase tracking-wider text-blue-600">Actuator Drive</span>
+        <div class="text-xl font-bold text-slate-900 mt-1">NEMA 23 (1.9 Nm)</div>
+        <p class="text-xs text-slate-500 mt-1">Motor stepper hybrid torsi tinggi 3A dengan mikrostepping 1/16 untuk akurasi posisi &lt; 0.03 mm.</p>
+      </div>
+    </div>
+
+    <!-- DFM & Engineering Competencies Breakdown -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-sm">
+        <h3 class="text-base font-bold text-slate-900 flex items-center gap-2 mb-4">
+          <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+          Design for Manufacturing (DFM) Highlights
+        </h3>
+        <ul class="space-y-3 text-xs text-slate-600">
+          <li class="flex items-start gap-2">
+            <span class="text-blue-600 font-bold">•</span>
+            <span><strong class="text-slate-800">Komponen Komersial Standar (COTS):</strong> Menggunakan bearing support BK12/BF12, housing nut DSG16H, dan ballscrew SFU1605 yang mudah diperoleh di pasar dan berbiaya rendah untuk penggantian berkala (maintenance-friendly).</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-blue-600 font-bold">•</span>
+            <span><strong class="text-slate-800">Machining Efisien:</strong> Pelat gantry samping (10 mm) dan end plate (8 mm) dirancang untuk dipotong menggunakan mesin CNC milling atau waterjet cutting dengan toleransi lubang H7 untuk dudukan bearing.</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-blue-600 font-bold">•</span>
+            <span><strong class="text-slate-800">Rangka Ekstrusi Modular 4080:</strong> Memanfaatkan profil aluminium T-Slot berkekuatan lentur tinggi, memudahkan perataan (leveling) dan instalasi aksesoris tanpa proses pengelasan (no weld distortion).</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-blue-600 font-bold">•</span>
+            <span><strong class="text-slate-800">Dual Y-Axis Synchronous Drive:</strong> Mengeliminasi potensi gantry racking (kemiringan sudut gantry) pada bentang lebar 800 mm.</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-sm">
+        <h3 class="text-base font-bold text-slate-900 flex items-center gap-2 mb-4">
+          <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+          Kompetensi Kolaboratif & Rekayasa yang Ditunjukkan
+        </h3>
+        <div class="grid grid-cols-2 gap-3 text-xs">
+          <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+            <span class="font-bold text-slate-900 block">Autodesk Inventor</span>
+            <span class="text-slate-500 text-[11px]">Parametric Modeling, Constraints, Exploded Views (.ipn), Assembly (.iam).</span>
+          </div>
+          <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+            <span class="font-bold text-slate-900 block">Mechanical Drafting</span>
+            <span class="text-slate-500 text-[11px]">26 Lembar gambar teknik berstandar ISO, etiket resmi PENS, toleransi linier & sudut.</span>
+          </div>
+          <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+            <span class="font-bold text-slate-900 block">Teamwork & Coordination</span>
+            <span class="text-slate-500 text-[11px]">Koordinasi 8 engineer dalam menyinkronkan 438 part CAD dan pembagian peran setara.</span>
+          </div>
+          <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+            <span class="font-bold text-slate-900 block">Assembly & SOP</span>
+            <span class="text-slate-500 text-[11px]">Penyusunan urutan perakitan mekanis (SOP Sheet 25-26) dan Bill of Materials (BOM).</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= MODAL LIGHTBOX FOR BLUEPRINTS ================= -->
+  <div id="blueprint-modal" class="hidden fixed inset-0 z-50 bg-slate-900/85 backdrop-blur-md flex flex-col p-4 sm:p-6 overflow-hidden">
+    <div class="flex items-center justify-between pb-3 border-b border-slate-700">
+      <div>
+        <span id="modal-sheet-number" class="text-xs font-bold uppercase tracking-wider text-blue-400">Sheet 01 / 26</span>
+        <h3 id="modal-sheet-title" class="text-sm sm:text-base font-bold text-white">Judul Lembar Gambar Kerja</h3>
+      </div>
+      <div class="flex items-center space-x-2">
+        <button class="px-3 py-1 text-xs rounded bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-600 transition-colors" onclick="zoomModalImage(1.2)">Zoom In (+)</button>
+        <button class="px-3 py-1 text-xs rounded bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-600 transition-colors" onclick="zoomModalImage(0.8)">Zoom Out (-)</button>
+        <button class="px-3 py-1 text-xs rounded bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-600 transition-colors" onclick="resetModalZoom()">Reset</button>
+        <button class="text-slate-400 hover:text-white text-2xl font-bold px-3 py-0.5 ml-2 transition-colors" onclick="closeModal()">&times;</button>
+      </div>
+    </div>
+
+    <!-- Modal Content Body -->
+    <div class="flex-1 overflow-auto flex items-center justify-center p-4 relative blueprint-bg" id="modal-image-container">
+      <img id="modal-image" src="" alt="Technical Blueprint" class="max-h-[85vh] max-w-full object-contain rounded shadow-2xl transition-transform duration-150 cursor-grab">
+    </div>
+
+    <div class="pt-3 border-t border-slate-700 flex items-center justify-between text-xs text-slate-300">
+      <p id="modal-sheet-dims">Dimensi: Standar Gambar Teknik PENS A3/A4</p>
+      <a id="modal-download-link" href="" download class="text-blue-400 hover:underline font-semibold">Download Gambar Ini (PNG)</a>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/three.min.js"></script>
+  <script src="js/OrbitControls.js"></script>
+  <script src="js/GLTFLoader.js"></script>
+  <script src="js/drawings_data.js"></script>
+  <script src="js/bom_data.js"></script>
+  <script src="js/viewer.js"></script>
+
+  <script>
+    // Global Application Controller
+    let viewer = null;
+    let currentBOMCategory = 'all';
+    let currentDrawingCategory = 'all';
+    let modalZoomScale = 1;
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // Initialize 3D Viewer
+      viewer = new CNCViewer('canvas-container');
+
+      // Populate BOM Table
+      renderBOMTable();
+
+      // Populate Drawings Grid
+      renderDrawingsGrid();
+    });
+
+    // Tab Switching
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-content').forEach(tab => tab.classList.add('hidden'));
+      document.querySelectorAll('.nav-tab-btn').forEach(btn => btn.classList.remove('active'));
+
+      const activeTab = document.getElementById(tabId);
+      if (activeTab) activeTab.classList.remove('hidden');
+
+      const clickedBtn = Array.from(document.querySelectorAll('.nav-tab-btn')).find(b => b.getAttribute('onclick').includes(tabId));
+      if (clickedBtn) clickedBtn.classList.add('active');
+
+      // Trigger resize for Three.js when switching back to viewer
+      if (tabId === 'tab-viewer' && viewer) {
+        setTimeout(() => viewer.onWindowResize(), 50);
+      }
+    }
+
+    // Display Mode Switcher
+    function changeMode(mode) {
+      if (!viewer) return;
+      viewer.setDisplayMode(mode);
+
+      ['pbr', 'wire', 'xray'].forEach(m => {
+        const btn = document.getElementById(`mode-${m}`);
+        if (btn) {
+          if (m === mode || (m === 'wire' && mode === 'wireframe')) {
+            btn.className = 'px-2.5 py-1 text-xs font-semibold rounded bg-blue-600 text-white shadow-sm';
+          } else {
+            btn.className = 'px-2.5 py-1 text-xs font-semibold rounded text-slate-600 hover:text-blue-600 hover:bg-slate-100';
+          }
+        }
+      });
+    }
+
+    // BOM Rendering
+    function renderBOMTable() {
+      const tbody = document.getElementById('bom-table-body');
+      if (!tbody) return;
+
+      const searchVal = (document.getElementById('bom-search')?.value || '').toLowerCase();
+
+      const filtered = BOM_DATA.filter(item => {
+        const matchesCat = (currentBOMCategory === 'all' || item.category === currentBOMCategory);
+        const matchesSearch = !searchVal || 
+          item.name.toLowerCase().includes(searchVal) ||
+          item.partNumber.toLowerCase().includes(searchVal) ||
+          item.material.toLowerCase().includes(searchVal) ||
+          item.specs.toLowerCase().includes(searchVal);
+        return matchesCat && matchesSearch;
+      });
+
+      tbody.innerHTML = filtered.map(item => `
+        <tr class="hover:bg-slate-50 transition-colors">
+          <td class="py-3 px-4 text-center font-mono font-bold text-blue-600">#${item.itemNo}</td>
+          <td class="py-3 px-4">
+            <div class="font-bold text-slate-900">${item.name}</div>
+            <div class="text-[11px] text-slate-500 font-mono">${item.partNumber}</div>
+          </td>
+          <td class="py-3 px-3">
+            <span class="px-2 py-0.5 rounded text-[10px] font-semibold ${getCategoryBadgeClass(item.category)}">
+              ${item.categoryLabel}
+            </span>
+          </td>
+          <td class="py-3 px-3 text-center font-bold text-slate-800">${item.qty}</td>
+          <td class="py-3 px-4 text-slate-600 text-[11px]">${item.material}</td>
+          <td class="py-3 px-4 text-slate-600 text-[11px] font-mono">${item.specs}</td>
+          <td class="py-3 px-4 text-slate-600 text-[11px]">${item.function}</td>
+          <td class="py-3 px-3 text-center">
+            ${item.sheetRef ? `
+              <button onclick="openSheetModal(${item.sheetRef})" class="text-blue-600 hover:text-blue-800 hover:underline font-semibold font-mono text-[11px]">
+                S${item.sheetRef}
+              </button>
+            ` : '<span class="text-slate-400">-</span>'}
+          </td>
+          <td class="py-3 px-4 text-center">
+            <button onclick="locateAndSwitch('${item.name}')" class="px-2.5 py-1 text-[11px] font-semibold rounded bg-slate-100 hover:bg-blue-600 hover:text-white text-blue-700 border border-slate-300 hover:border-blue-500 transition-all shadow-sm">
+              Lihat di 3D
+            </button>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    function getCategoryBadgeClass(cat) {
+      switch(cat) {
+        case 'structure': return 'bg-blue-50 text-blue-700 border border-blue-200';
+        case 'motion': return 'bg-teal-50 text-teal-700 border border-teal-200';
+        case 'actuator': return 'bg-amber-50 text-amber-800 border border-amber-200';
+        case 'fastener': return 'bg-slate-100 text-slate-700 border border-slate-200';
+        default: return 'bg-slate-100 text-slate-700 border border-slate-200';
+      }
+    }
+
+    function setBOMCategory(cat, btn) {
+      currentBOMCategory = cat;
+      document.querySelectorAll('#tab-bom .filter-pill').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      renderBOMTable();
+    }
+
+    function filterBOM() {
+      renderBOMTable();
+    }
+
+    function locateAndSwitch(partName) {
+      switchTab('tab-viewer');
+      if (viewer) {
+        viewer.locateComponent(partName);
+      }
+    }
+
+    // Drawings Grid Rendering
+    function renderDrawingsGrid() {
+      const grid = document.getElementById('drawings-grid');
+      if (!grid) return;
+
+      const filtered = DRAWINGS_DATA.filter(item => {
+        return currentDrawingCategory === 'all' || item.category === currentDrawingCategory;
+      });
+
+      grid.innerHTML = filtered.map(item => `
+        <div class="blueprint-card" onclick="openSheetModal(${item.sheet})">
+          <div class="aspect-[4/3] bg-slate-100 overflow-hidden relative border-b border-slate-200">
+            <img src="drawings/${item.file}" alt="${item.title}" class="w-full h-full object-contain p-2 hover:scale-105 transition-transform duration-300" loading="lazy">
+            <div class="absolute top-2 left-2 px-2 py-0.5 rounded bg-white/90 backdrop-blur text-[10px] font-mono font-bold text-slate-800 border border-slate-300 shadow-sm">
+              Sheet ${String(item.sheet).padStart(2, '0')} / 26
+            </div>
+            <div class="absolute top-2 right-2 px-2 py-0.5 rounded bg-blue-50/90 backdrop-blur text-[10px] font-bold text-blue-700 border border-blue-200 uppercase shadow-sm">
+              ${item.paper} • Skala ${item.scale}
+            </div>
+          </div>
+          <div class="p-4">
+            <span class="text-[10px] font-bold uppercase tracking-wider text-blue-600">${item.categoryLabel}</span>
+            <h3 class="text-sm font-bold text-slate-900 leading-snug mt-0.5">${item.title}</h3>
+            <p class="text-[11px] text-slate-500 mt-1 line-clamp-2 leading-relaxed">${item.desc}</p>
+            <div class="mt-3 flex items-center justify-between pt-2 border-t border-slate-100 text-[11px]">
+              <span class="text-slate-400 font-mono">${item.dims}</span>
+              <span class="text-blue-600 font-semibold group-hover:underline">Buka Gambar &rarr;</span>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function setDrawingCategory(cat, btn) {
+      currentDrawingCategory = cat;
+      document.querySelectorAll('#tab-drawings .filter-pill').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      renderDrawingsGrid();
+    }
+
+    // Modal Lightbox
+    function openSheetModal(sheetNum) {
+      const sheet = DRAWINGS_DATA.find(d => d.sheet === sheetNum);
+      if (!sheet) return;
+
+      document.getElementById('modal-sheet-number').textContent = `Sheet ${String(sheet.sheet).padStart(2, '0')} / 26 • ${sheet.paper} (Skala ${sheet.scale})`;
+      document.getElementById('modal-sheet-title').textContent = sheet.title;
+      document.getElementById('modal-sheet-dims').textContent = `Dimensi / Spesifikasi: ${sheet.dims} • ${sheet.categoryLabel}`;
+
+      const img = document.getElementById('modal-image');
+      img.src = `drawings/${sheet.file}`;
+
+      const dl = document.getElementById('modal-download-link');
+      dl.href = `drawings/${sheet.file}`;
+      dl.download = `PENS_CNC_Drawing_Sheet_${String(sheet.sheet).padStart(2, '0')}.png`;
+
+      resetModalZoom();
+      document.getElementById('blueprint-modal').classList.remove('hidden');
+    }
+
+    function closeModal() {
+      document.getElementById('blueprint-modal').classList.add('hidden');
+    }
+
+    function zoomModalImage(factor) {
+      modalZoomScale *= factor;
+      modalZoomScale = Math.max(0.5, Math.min(4, modalZoomScale));
+      const img = document.getElementById('modal-image');
+      if (img) img.style.transform = `scale(${modalZoomScale})`;
+    }
+
+    function resetModalZoom() {
+      modalZoomScale = 1;
+      const img = document.getElementById('modal-image');
+      if (img) img.style.transform = 'scale(1)';
+    }
+
+    // Close modal on Escape key
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeModal();
+    });
+  </script>
+</body>
+</html>
