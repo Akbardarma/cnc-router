@@ -29,11 +29,11 @@ class CNCViewer {
 
     // Camera preset targets (Normalized scale ~1.5m)
     this.cameraPresets = {
-      isometric: { pos: new THREE.Vector3(1.7, 1.3, 1.7), target: new THREE.Vector3(0, 0, 0) },
-      front: { pos: new THREE.Vector3(0, 0.2, 2.2), target: new THREE.Vector3(0, 0, 0) },
-      top: { pos: new THREE.Vector3(0, 2.5, 0.01), target: new THREE.Vector3(0, 0, 0) },
-      side: { pos: new THREE.Vector3(2.3, 0.2, 0), target: new THREE.Vector3(0, 0, 0) },
-      spindle: { pos: new THREE.Vector3(0.05, 0.2, 0.75), target: new THREE.Vector3(0, 0.1, 0.1) }
+      isometric: { pos: new THREE.Vector3(1.7, 1.35, 1.7), target: new THREE.Vector3(0, 0.1, 0) },
+      front: { pos: new THREE.Vector3(0, 0.25, 2.2), target: new THREE.Vector3(0, 0.1, 0) },
+      top: { pos: new THREE.Vector3(0, 2.5, 0.01), target: new THREE.Vector3(0, 0.1, 0) },
+      side: { pos: new THREE.Vector3(2.3, 0.25, 0), target: new THREE.Vector3(0, 0.1, 0) },
+      spindle: { pos: new THREE.Vector3(0.05, 0.25, 0.75), target: new THREE.Vector3(0, 0.15, 0.1) }
     };
 
     this.cameraLerp = null;
@@ -85,7 +85,7 @@ class CNCViewer {
     this.renderer.domElement.addEventListener('click', (e) => this.onCanvasClick(e));
 
     // 7. Load Akbar's Actual Inventor Assembly GLB (Optimized 3.8 MB)
-    this.loadModel('models/cnc_router_draco.glb');
+    this.loadModel('models/cnc_router_draco.glb?v=2.1');
 
     // 8. Render Loop
     this.animate();
@@ -523,7 +523,7 @@ class CNCViewer {
     if (subEl) subEl.textContent = subsystem;
     if (matEl) matEl.textContent = matName;
     if (funcEl) {
-      funcEl.textContent = `Komponen perakitan asli dari C:\\gptcodex\\ebo\\Last\\${partName}.ipt. Terintegrasi langsung dalam subsistem ${subsystem}.`;
+      funcEl.textContent = `Part CAD: ${partName}.ipt • Terintegrasi presisi dalam subsistem ${subsystem} (Autodesk Inventor).`;
     }
   }
 
