@@ -84,8 +84,8 @@ class CNCViewer {
     this.renderer.domElement.addEventListener('pointermove', (e) => this.onPointerMove(e));
     this.renderer.domElement.addEventListener('click', (e) => this.onCanvasClick(e));
 
-    // 7. Load Akbar's Actual Inventor Assembly GLB
-    this.loadModel('models/cnc_router.glb');
+    // 7. Load Akbar's Actual Inventor Assembly GLB (Optimized 3.8 MB)
+    this.loadModel('models/cnc_router_draco.glb');
 
     // 8. Render Loop
     this.animate();
@@ -123,9 +123,18 @@ class CNCViewer {
 
   loadModel(url) {
     const loader = new THREE.GLTFLoader();
+
+    // Attach Draco Decoder for fast 3.8 MB loading
+    if (typeof THREE.DRACOLoader !== 'undefined') {
+      const dracoLoader = new THREE.DRACOLoader();
+      dracoLoader.setDecoderPath('js/draco/');
+      loader.setDRACOLoader(dracoLoader);
+    }
+
     const loadingEl = document.getElementById('model-loading-indicator');
     const progressEl = document.getElementById('loading-progress-bar');
     const loadingTextEl = document.getElementById('loading-progress-text');
+    const expectedBytes = url.includes('draco') ? 3838464 : 15700404;
 
     loader.load(
       url,
@@ -154,9 +163,14 @@ class CNCViewer {
 
         this.scene.add(this.modelRoot);
 
+        if (progressEl) progressEl.style.width = '100%';
+        if (loadingTextEl) loadingTextEl.textContent = 'Menyiapkan 438 Komponen 3D... Selesai!';
+
         if (loadingEl) {
-          loadingEl.style.opacity = '0';
-          setTimeout(() => { loadingEl.style.display = 'none'; }, 400);
+          setTimeout(() => {
+            loadingEl.style.opacity = '0';
+            setTimeout(() => { loadingEl.style.display = 'none'; }, 400);
+          }, 350);
         }
 
         // Set initial view
@@ -167,17 +181,26 @@ class CNCViewer {
         if (partCountEl) partCountEl.textContent = `${this.occurrenceList.length} Inventor Parts`;
       },
       (xhr) => {
-        if (xhr.lengthComputable) {
-          const pct = Math.round((xhr.loaded / xhr.total) * 100);
-          if (progressEl) progressEl.style.width = `${pct}%`;
-          if (loadingTextEl) loadingTextEl.textContent = `Memuat Assembly Inventor Asli: ${pct}%`;
+        const total = (xhr.lengthComputable && xhr.total) ? xhr.total : expectedBytes;
+        const loaded = xhr.loaded || 0;
+        const pct = Math.min(99, Math.round((loaded / total) * 100));
+        const mbLoaded = (loaded / (1024 * 1024)).toFixed(1);
+        const mbTotal = (total / (1024 * 1024)).toFixed(1);
+        if (progressEl) progressEl.style.width = `${pct}%`;
+        if (loadingTextEl) {
+          loadingTextEl.textContent = `Mengunduh Assembly 3D (${mbLoaded} MB / ${mbTotal} MB): ${pct}%`;
         }
       },
       (error) => {
         console.error('Error loading CAD model:', error);
+        if (url.includes('draco')) {
+          console.log('Falling back to standard GLB model...');
+          this.loadModel('models/cnc_router.glb');
+          return;
+        }
         if (loadingTextEl) {
-          loadingTextEl.textContent = 'Gagal memuat model. Periksa file GLB.';
-          loadingTextEl.classList.add('text-red-400');
+          loadingTextEl.textContent = 'Gagal memuat model 3D. Silakan refresh halaman.';
+          loadingTextEl.classList.add('text-red-500');
         }
       }
     );
