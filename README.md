@@ -112,8 +112,8 @@ Repositori ini telah dikonfigurasi untuk langsung dapat dideploy melalui **GitHu
    - Masuk ke menu **Settings** > **Pages** (di bilah navigasi sebelah kiri).
    - Di bagian **Build and deployment > Source**, pilih **Deploy from a branch**.
    - Di bawah **Branch**, pilih branch `main` dan folder `/ (root)`, lalu klik **Save**.
-4. Tunggu sekitar 1-2 menit hingga GitHub Actions selesai mempublikasikan situs. Link website publik Anda akan aktif di:
-   `https://<username>.github.io/cnc-router-showcase/`
+4. Tunggu sekitar 1-2 menit hingga GitHub Actions selesai mempublikasikan situs. Link website publik Anda aktif di:
+   **https://akbardarma.github.io/cnc-router/**
 
 ---
 
